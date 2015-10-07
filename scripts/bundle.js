@@ -22,14 +22,18 @@ function load() {
 		$mainBody.html('');
 		console.log(show.length);
 		for (var i = 0; i < show.length; i++) {
-			$mainBody.append('<span id=' + zzz + ' class=' + '"spanich"' + '><img src=' + show[i].image + ' id=' + '"backgroundImg"' + '><div class=' + 'descriptionDiv' + '>' + show[i].desc + '</div></span>');
+			var enlarge = function enlarge(e) {
+				console.log(zzz);
+				console.log('enlargeFunc', $(this));
+				$(this).toggleClass('large');
+			};
+
+			$mainBody.append('<div id=z' + zzz + ' class=' + '"spanich"' + '><img src=' + show[i].image + ' id=' + '"backgroundImg"' + '><div class=' + 'descriptionDiv' + '>' + show[i].desc + '</div></div>');
+
+			var spanich = $('#z' + zzz);
+			spanich.on('click', enlarge);
+
 			zzz++;
-		}
-		var spanich = document.getElementsByClassName('.spanich');
-		spanich.addEventListener('click', enlarge);
-		function enlarge(e) {
-			spanich.style.width('100%;');
-			spanich.style.height('100%;');
 		}
 	}, 'json');
 }

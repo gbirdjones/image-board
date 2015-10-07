@@ -18,22 +18,25 @@ $close.on('click', closeFunc);
 $submit.on('click', uploadFunc);
 
 function load() {
-$.get (
-	'http://tiyfe.herokuapp.com/collections/nbd',
-	function(show) {
-		$mainBody.html('');
-		console.log(show.length);
+	$.get (
+		'http://tiyfe.herokuapp.com/collections/nbd',
+		function(show) {
+			$mainBody.html('');
+			console.log(show.length);
 			for(var i=0; i<show.length; i++) {
-				$mainBody.append('<span id='+ zzz + ' class=' + '"spanich"' + '><img src=' + show[i].image + ' id=' + '"backgroundImg"' + '><div class=' + 'descriptionDiv' + '>' + show[i].desc + '</div></span>');
+				$mainBody.append('<div id=z'+ zzz + ' class=' + '"spanich"' + '><img src=' + show[i].image + ' id=' + '"backgroundImg"' + '><div class=' + 'descriptionDiv' + '>' + show[i].desc + '</div></div>');
+				
+				var spanich = $('#z'+zzz);
+				spanich.on('click', enlarge);
+				function enlarge (e) {
+					console.log(zzz);
+					console.log('enlargeFunc', $(this));
+					$(this).toggleClass('large');
+				}
 				zzz++;
 			}
-			var spanich = document.getElementsByClassName('.spanich');
-			spanich.addEventListener('click', enlarge);
-			function enlarge (e) {
-				spanich.style.width('100%;');
-				spanich.style.height('100%;');
-			}
 		},
+			
 		'json'
 	)
 }
